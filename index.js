@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors());
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 async function scrapeFirstSource() {
   const URLs = [
@@ -343,7 +343,6 @@ async function scrapeDemo() {
       }
     });
   });
-  // const $ = cheerio.load(fs.readFileSync('C:/cheerio-scraper/website.html'));
 
   return umrahPackages;
 }
@@ -364,10 +363,6 @@ app.get("/umrah", async (req, res) => {
     for (const thirdSourceResult of thirdSourceResults) {
       scrapeResults.push(thirdSourceResult);
     }
-    // const demoResults = await scrapeDemo();
-    // for (const demoResult of demoResults) {
-    //   scrapeResults.push(demoResult);
-    // }
 
     return res.status(200).json({
       result: scrapeResults,
