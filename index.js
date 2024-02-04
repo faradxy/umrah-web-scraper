@@ -89,7 +89,7 @@ async function scrapeFirstSource() {
 async function scrapeSecondSource() {
   const URLs = [
     "https://azzuhatravel.com/umrah-safwah/",
-    "https://azzuhatravel.com/umrah-rotana/",
+    // "https://azzuhatravel.com/umrah-rotana/",
     "https://azzuhatravel.com/umrah-menara-makkah/"
   ];
 
@@ -318,29 +318,6 @@ async function scrapeThirdSource() {
       }
 
       umrahPackage['seasons'] = seasons;
-    });
-  });
-
-  return umrahPackages;
-}
-
-async function scrapeDemo() {
-  let umrahPackages = [];
-
-  await axios('').then((response) => {
-    const html_data = response.data;
-    const $ = cheerio.load(html_data);
-    $('table tr').each((index, element) => {
-      if (index > 0) {
-        umrahPackages.push({
-          "name": $(element).find("td").eq(0).text(),
-          "duration": $(element).find("td").eq(1).text(),
-          "makkahHotel": $(element).find("td").eq(2).text(),
-          "madinahHotel": $(element).find("td").eq(3).text(),
-          "room": $(element).find("td").eq(4).text(),
-          "price": $(element).find("td").eq(5).text()
-        })
-      }
     });
   });
 
